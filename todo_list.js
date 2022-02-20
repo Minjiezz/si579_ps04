@@ -17,12 +17,18 @@ addTaskButton.addEventListener('click', function() {
     addTask(description.value, dateAndTimeToTimestamp(dateInputElement, timeInputElement));
 })
 
-addTaskButton.addEventListener('keydown', (event)=> {
-    if (event.keyCode === 13) { // key code of the keybord key
-      event.preventDefault();
-      addTask(description.value, dateAndTimeToTimestamp(dateInputElement, timeInputElement));
+// addTaskButton.addEventListener('keydown', (event)=> {
+//     if (event.keyCode === 13) { // key code of the keybord key
+//       event.preventDefault();
+//       addTask(description.value, dateAndTimeToTimestamp(dateInputElement, timeInputElement));
+//     }
+// });
+
+document.onkeydown=function(){
+    if(window.event.keyCode=='13'){
+        addTask(description.value, dateAndTimeToTimestamp(dateInputElement, timeInputElement));
     }
-});
+}
 
 /** Convert input#dueDate and input#dueTime to a timestamp
  * @param {HTMLElement} dateInputElement // The date input element
@@ -63,8 +69,8 @@ function addTask(description, dueTime=false){
 
     // Mark things as done
     var doneButton = document.getElementsByClassName("btn btn-sm btn-outline-danger done");
-    var i
-    for (i = 0; i < doneButton.length; i++) {
+    // var i
+    for (let i = 0; i < doneButton.length; i++) {
         doneButton[i].onclick = function(){
             // doneButton[i].parentNode.remove(); // why it doesn't work ???
             var Litodelete = this.parentElement;
