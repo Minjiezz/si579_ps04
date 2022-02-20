@@ -24,11 +24,18 @@ addTaskButton.addEventListener('click', function() {
 //     }
 // });
 
-document.onkeydown=function(){
-    if(window.event.keyCode=='13'){
-        addTask(description.value, dateAndTimeToTimestamp(dateInputElement, timeInputElement));
+document.addEventListener('keydown', (event)=> {
+    if (event.key === 'Enter') { // key code of the keybord key
+      event.preventDefault();
+      addTask(description.value, dateAndTimeToTimestamp(dateInputElement, timeInputElement));
     }
-}
+});
+
+// document.onkeydown=function(){
+//     if(window.event.keyCode=='13'){
+//         addTask(description.value, dateAndTimeToTimestamp(dateInputElement, timeInputElement));
+//     }
+// }
 
 /** Convert input#dueDate and input#dueTime to a timestamp
  * @param {HTMLElement} dateInputElement // The date input element
